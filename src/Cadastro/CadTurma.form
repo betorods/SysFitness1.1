@@ -44,11 +44,11 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace pref="140" max="32767" attributes="0"/>
+                  <EmptySpace pref="131" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jButton1" min="-2" pref="78" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="limpar" min="-2" pref="78" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="voltar" min="-2" pref="78" max="-2" attributes="0"/>
@@ -56,7 +56,7 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -73,12 +73,12 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jTextField4" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextField3" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="horario" alignment="0" max="32767" attributes="0"/>
+                              <Component id="capacidade" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="estados" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
-                          <Component id="jTextField1" min="-2" pref="137" max="-2" attributes="0"/>
-                          <Component id="jTextField2" min="-2" pref="124" max="-2" attributes="0"/>
+                          <Component id="turno" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
+                          <Component id="codigoTurma" min="-2" pref="137" max="-2" attributes="0"/>
+                          <Component id="matricula_Professor" min="-2" pref="124" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="148" max="32767" attributes="0"/>
                   </Group>
@@ -88,9 +88,8 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="154" max="32767" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="voltar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -103,27 +102,27 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="codigoTurma" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="matricula_Professor" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="capacidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="horario" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          <Component id="estados" min="-2" max="-2" attributes="0"/>
+                          <Component id="turno" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="51" max="32767" attributes="0"/>
                   </Group>
@@ -132,7 +131,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="codigoTurma">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
@@ -144,9 +143,9 @@
             <Property name="text" type="java.lang.String" value="Matricula do Professor"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="matricula_Professor">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="matricula_ProfessorActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -154,16 +153,16 @@
             <Property name="text" type="java.lang.String" value="Capacidade da Turma"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="capacidade">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="text" type="java.lang.String" value="Horario"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField4">
+        <Component class="javax.swing.JTextField" name="horario">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="horarioActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
@@ -171,7 +170,7 @@
             <Property name="text" type="java.lang.String" value="Turno"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="estados">
+        <Component class="javax.swing.JComboBox" name="turno">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
@@ -182,7 +181,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="estadosActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="turnoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="limpar">
@@ -211,7 +210,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Imagem"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\Alberto\Documents\NetBeansProjects\SysFitness1.1\build\classes\Imagens\log1.png"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
