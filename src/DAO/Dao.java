@@ -19,6 +19,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import Bean.Alunos;
+import java.sql.Connection;
+import java.sql.ResultSet;
 
 /**
  *
@@ -26,32 +28,36 @@ import Bean.Alunos;
  */
 public class Dao {
     
-    ConectaBanco conecta;
+  /*  //ConexaoBD conecta;
+    Connection conecta;
+    PreparedStatement pst;
+    ResultSet rs;
     
-    public Dao(){
-        conecta = new ConectaBanco();
-        conecta.conexao();
+    public Dao() throws ClassNotFoundException{
+      //  initComponents();
+        conecta = ConexaoBD.conexao();
     }
     
     public void inserirAluno(Alunos aluno){
-        try {
-            PreparedStatement preStat;
-            preStat = conecta.connection.prepareStatement("insert into aluno (nome, cpf, rg_socio, cpf_socio, profissao_socio, nome_pai_socio, nome_mae_socio, foto_socio, inscricao_socio, categoria_socio, setor_socio, rua_socio, bairro_socio, numero_end_socio, cidade_socio, estado_socio, cep_socio, nascimento_socio, data_inscricao_socio) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            preStat.setString(1, aluno.getNome());
-            preStat.setString(2, aluno.getCPF());
-            preStat.setString(3, aluno.getTelefone());
-            preStat.setString(4, aluno.getEndereco().getRua());
-            preStat.setString(5, aluno.getEndereco().getBairro());
-            preStat.setString(6, aluno.getEndereco().getNum());
-            preStat.setString(7, aluno.getEndereco().getCidade());
-            preStat.setString(8, aluno.getEndereco().getEstado());
-            preStat.setString(9, aluno.getEndereco().getCep());
-            preStat.execute();// executa a inserção
-            JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro na Inserção de Dados! \nERRO: " + ex);
+       String sql = "Insert into usuario(id_usuario, id_aluno, capacidade, horario, turno) values(?,?,?,?,?)";
+        try{
+            pst = conecta.prepareStatement(sql);
+            
+            pst.setString(1, aluno.nome.getText());
+            pst.setString(2, matricula_Professor.getText());
+            pst.setString(3, capacidade.getText());
+            pst.setString(4, horario.getText());
+            pst.setString(5, turno.getSelectedItem().toString());
+            
+            pst.execute();
+
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!","Cadastro com sucesso", JOptionPane.INFORMATION_MESSAGE);
+ //           listarUsuario();
         }
-                
+        catch(SQLException error){
+            JOptionPane.showMessageDialog(null, error);
+        }
+         
     }
     
     public void preencherTabela(JTable jTableSocio, String filtro){
@@ -87,7 +93,7 @@ public class Dao {
                                            conecta.resultSet.getString("estado_socio"),
                                            conecta.resultSet.getString("cep_socio"),
                                            conecta.resultSet.getString("nascimento_socio"),
-                                           conecta.resultSet.getString("data_inscricao_socio")});                                           
+                                           conecta.resultSet.getString("data_inscricao_socio")});                                        
                                            count++;
                 }
             } while(conecta.resultSet.next());
@@ -244,4 +250,8 @@ public class Dao {
         }
     }
 
+    private void initComponents() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+*/
 }

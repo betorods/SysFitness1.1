@@ -18,10 +18,11 @@ public class ConectaBanco {
     
     
     public ConectaBanco(){
-        driver = "org.postgresql.Driver"; // responsável por identificar o serviço de banco de dados
-        caminho = "jdbc:postgresql://localhost:5432/SysFitness"; // responsável por setar o local do banco de dados
-        usuario = "postgres";
-        senha = "1234";
+        driver = "org.mysql.Driver"; // responsável por identificar o serviço de banco de dados
+     //   caminho = "jdbc:postgresql://localhost:5432/sysfitness"; // responsável por setar o local do banco de dados
+        caminho = "jdbc:mysql://127.0.0.1/sysfitness";
+        usuario = "root";
+        senha = "12345";
     }
     
     public void conexao(){ //responsável por realizar a conexão com o banco

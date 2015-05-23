@@ -8,13 +8,13 @@ import javax.swing.JOptionPane;
  *
  * @author Alberto
  */
-public class Conexao {
+public class ConexaoBD {
      public static Connection conexao() throws ClassNotFoundException{
         try {
            //  Class.forName("org.mysql.Driver");
-             Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/SysFitness","root","12345");
-             //("jdbc:postgresql://localhost:5432/SysFitness","postgres","1234");
-           //  JOptionPane.showMessageDialog(null, "Conectado com sucesso:");
+             Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/sysfitness","root","12345");
+            // Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Academia","postgres","1234");
+            // JOptionPane.showMessageDialog(null, "Conectado com sucesso:");
              return con;
         } catch (SQLException error) {
             JOptionPane.showMessageDialog(null, error);
@@ -22,4 +22,6 @@ public class Conexao {
         //    throw new RuntimeException(ex);
         }
     }
+
+ 
 }

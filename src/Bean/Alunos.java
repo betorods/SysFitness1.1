@@ -14,15 +14,44 @@ public class Alunos extends Usuario{
         private float coxa;
         private float peitoral;
         private float costas;
+        private int Id_Alunos;
 
-        public Alunos(){
-        }
-        
-        public Alunos(String nome, String CPF){
-   //         super (CPF, nome);
-   //         this.
-        }
+    public Alunos(float altura, float peso, float panturrilha, float braco, float perna, float cintura, float coxa, float peitoral, float costas, int Id_Alunos, String nome, String cpf, String telFixo, String rg, String dataNasc, String localNasc, String sexo, String mae, String pai, String endereco, int numero, String bairro, String cidade, String cep, String estado, String telCelular, String foto) {
+        super(nome, cpf, telFixo, rg, dataNasc, localNasc, sexo, mae, pai, endereco, numero, bairro, cidade, cep, estado, telCelular, foto);
+        this.altura = altura;
+        this.peso = peso;
+        this.panturrilha = panturrilha;
+        this.braco = braco;
+        this.perna = perna;
+        this.cintura = cintura;
+        this.coxa = coxa;
+        this.peitoral = peitoral;
+        this.costas = costas;
+        this.Id_Alunos = Id_Alunos;
+    }
+
+    public Alunos(float altura, float peso, float panturrilha, float braco, float perna, float cintura, float coxa, float peitoral, float costas, int Id_Alunos) {
+        this.altura = altura;
+        this.peso = peso;
+        this.panturrilha = panturrilha;
+        this.braco = braco;
+        this.perna = perna;
+        this.cintura = cintura;
+        this.coxa = coxa;
+        this.peitoral = peitoral;
+        this.costas = costas;
+        this.Id_Alunos = Id_Alunos;
+    }
+
     
+
+    
+
+    public Alunos() {
+     //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+        
+        
     	public float getAltura() {
 		return altura;
 	}
@@ -111,4 +140,12 @@ public class Alunos extends Usuario{
 	public void setCostas(float costas) {
 		this.costas = costas;
 	}
+
+    public int getId_Alunos() {
+        return Id_Alunos;
+    }
+
+    public void setId_Alunos(int Id_Alunos) {
+        this.Id_Alunos = Id_Alunos;
+    }
 }
