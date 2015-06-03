@@ -24,8 +24,9 @@ public class Usuario
    private String telCelular;
    private String telFixo;
    private String foto;
+   int verificador;
 
-    public Usuario(String nome, String cpf,String telFixo, String rg, String dataNasc, String localNasc, String sexo, String mae, String pai, String endereco, int numero, String bairro, String cidade, String cep, String estado, String telCelular, String foto) {
+    public Usuario(String nome, String cpf,String telFixo, String rg, String dataNasc, String localNasc, String sexo, String mae, String pai, String endereco, int numero, String bairro, String cidade, String cep, String estado, String telCelular, String foto, int verificador) {
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
@@ -43,6 +44,7 @@ public class Usuario
         this.telCelular = telCelular;
         this.telFixo = telFixo;
         this.foto = foto;
+        this.verificador = verificador;
     }
   
         
@@ -196,5 +198,13 @@ public class Usuario
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public int getVerificador() {
+        return verificador;
+    }
+
+    public void setVerificador(int verificador) {
+        this.verificador = verificador;
     }
 }

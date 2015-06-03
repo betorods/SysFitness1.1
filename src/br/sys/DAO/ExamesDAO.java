@@ -20,8 +20,8 @@ public class ExamesDAO {
  public void inserirExames(Exames exames){
       try {
             PreparedStatement preStat;
-            preStat = conecta.connection.prepareStatement("Insert into examesmedicos(cpf_aluno,nome_medico,crm,datarealizacao,datavalidade,recomendacoes,objetivo) values(?,?,?,?,?,?,?)");
-            preStat.setString(1, exames.getCpf());
+            preStat = conecta.connection.prepareStatement("Insert into examesmedicos(mat_aluno,nome_medico,crm,datarealizacao,datavalidade,recomendacoes,objetivo) values(?,?,?,?,?,?,?)");
+            preStat.setInt(1, exames.getMatriculaAluno());
             preStat.setString(2, exames.getNomeMedico());
             preStat.setInt(3, exames.getCrm());
             preStat.setString(4, exames.getDataRealizacaoExame());

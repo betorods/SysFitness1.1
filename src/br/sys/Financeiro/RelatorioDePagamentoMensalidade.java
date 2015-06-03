@@ -29,8 +29,8 @@ public class RelatorioDePagamentoMensalidade extends javax.swing.JInternalFrame 
 
     public void pesquisaMesalidades() {
         String sql = "SELECT data_pagamento,valor "
-                     + "FROM pagamento_mensalidade "
-                     + "WHERE cpf_aluno like ? AND data_pagamento >= ? AND data_pagamento <= ?;";
+                   + "FROM pagamento_mensalidade "
+                   + "WHERE cpf_aluno like ? AND data_pagamento >= ? AND data_pagamento <= ?;";
         try {
             pst = conecta.prepareStatement(sql);
             pst.setString(1, cpf_aluno.getText() + "%");// %para quando apagar trazer de volta as informações do BD.

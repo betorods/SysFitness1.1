@@ -11,8 +11,8 @@ public class Series extends Alunos{
 	private String data_inicio;
 	private String data_termino;
 
-    public Series(int idSerie, String tipo, String exercicio, String data_inicio, String data_termino, float altura, float peso, float panturrilha, float braco, float perna, float cintura, float coxa, float peitoral, float costas, int Id_Alunos, String nome, String cpf, String telFixo, String rg, String dataNasc, String localNasc, String sexo, String mae, String pai, String endereco, int numero, String bairro, String cidade, String cep, String estado, String telCelular,String foto) {
-        super(altura, peso, panturrilha, braco, perna, cintura, coxa, peitoral, costas, Id_Alunos, nome, cpf, telFixo, rg, dataNasc, localNasc, sexo, mae, pai, endereco, numero, bairro, cidade, cep, estado, telCelular, foto);
+    public Series(int idSerie, String tipo, String exercicio, String data_inicio, String data_termino, float altura, float peso, float panturrilha, float braco, float perna, float cintura, float coxa, float peitoral, float costas, int Id_Alunos, String nome, String cpf, String telFixo, String rg, String dataNasc, String localNasc, String sexo, String mae, String pai, String endereco, int numero, String bairro, String cidade, String cep, String estado, String telCelular,String foto, int verificador) {
+        super(altura, peso, panturrilha, braco, perna, cintura, coxa, peitoral, costas, Id_Alunos, nome, cpf, telFixo, rg, dataNasc, localNasc, sexo, mae, pai, endereco, numero, bairro, cidade, cep, estado, telCelular, foto, verificador);
         this.idSerie = idSerie;
         this.tipo = tipo;
         this.exercicio = exercicio;

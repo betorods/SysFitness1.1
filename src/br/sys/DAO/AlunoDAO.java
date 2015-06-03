@@ -40,6 +40,7 @@ public class AlunoDAO {
             preStat.setString(14, alunos.getSexo());
             preStat.setString(15, alunos.getEstado());
             preStat.setString(16, alunos.getFoto());
+            preStat.setInt(17, alunos.getVerificador());
             preStat.execute();
             // Resposta para o Cadastro
             JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");

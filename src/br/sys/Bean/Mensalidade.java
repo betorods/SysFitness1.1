@@ -5,19 +5,21 @@ package br.sys.Bean;
  */
 public class Mensalidade {
     private int mat_alunos;
+    private int mat_funcionario;
     private String cpf;
     private String Nome;
     private float valor;
     private String data_vencimento;
     private String data_pagamento;
 
-    public Mensalidade(int mat_alunos, String cpf, float valor, String data_vencimento, String data_pagamento,String Nome) {
+    public Mensalidade(int mat_alunos, int mat_funcionario,String cpf, float valor, String data_vencimento, String data_pagamento,String Nome) {
         this.mat_alunos = mat_alunos;
         this.cpf = cpf;
         this.valor = valor;
         this.data_vencimento = data_vencimento;
         this.data_pagamento = data_pagamento;
         this.Nome = Nome;
+        this.mat_funcionario = mat_funcionario;
     }
     
     
@@ -71,6 +73,14 @@ public class Mensalidade {
 
     public void setNome(String Nome) {
         this.Nome = Nome;
+    }
+
+    public int getMat_funcionario() {
+        return mat_funcionario;
+    }
+
+    public void setMat_funcionario(int mat_funcionario) {
+        this.mat_funcionario = mat_funcionario;
     }
    
 }

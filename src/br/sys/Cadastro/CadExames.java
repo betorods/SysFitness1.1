@@ -34,10 +34,10 @@ public class CadExames extends javax.swing.JInternalFrame {
     }
     
     public void pesquisaAlunos(){
-        String sql ="Select id_usuario, nome, cpf, endereco from usuario where cpf like ?" ;
+        String sql ="Select id_usuario, nome, cpf, endereco from usuario where id_usuario like ?" ;
         try{
             pst = conecta.prepareStatement(sql);
-            pst.setString(1, cpf.getText()+"%");// %para quando apagar trazer de volta as informações do BD.
+            pst.setString(1, matricuaAluno.getText()+"%");// %para quando apagar trazer de volta as informações do BD.
             rs = pst.executeQuery();
             TabelaAlunos.setModel(DbUtils.resultSetToTableModel(rs));
         }
@@ -68,11 +68,11 @@ public class CadExames extends javax.swing.JInternalFrame {
         crm = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
         recomendacaoMedica = new javax.swing.JTextField();
-        cpf = new javax.swing.JFormattedTextField();
         jLabel36 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TabelaAlunos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        matricuaAluno = new javax.swing.JTextField();
         voltar = new javax.swing.JButton();
         limpar = new javax.swing.JButton();
         salvar = new javax.swing.JButton();
@@ -129,17 +129,6 @@ public class CadExames extends javax.swing.JInternalFrame {
             }
         });
 
-        try {
-            cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        cpf.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cpfKeyReleased(evt);
-            }
-        });
-
         jLabel36.setText("Recomendações Médicas");
 
         TabelaAlunos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -149,7 +138,7 @@ public class CadExames extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(TabelaAlunos);
 
-        jLabel1.setText("CPF do Aluno:");
+        jLabel1.setText("Matricula doAluno:");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -192,7 +181,7 @@ public class CadExames extends javax.swing.JInternalFrame {
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(matricuaAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addContainerGap())))
@@ -206,7 +195,7 @@ public class CadExames extends javax.swing.JInternalFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(matricuaAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
@@ -281,7 +270,7 @@ public class CadExames extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -314,7 +303,7 @@ public class CadExames extends javax.swing.JInternalFrame {
         Exames exames = new Exames();
         ExamesDAO  examesdao = new ExamesDAO();
  
-        exames.setCpf(cpf.getText());
+        exames.setMatriculaAluno(Integer.parseInt(matricuaAluno.getText()));
         exames.setNomeMedico(NomeMedico.getText());
         exames.setCrm(Integer.parseInt(crm.getText()));
         exames.setDataRealizacaoExame(dataRealizacaoExame.getText());
@@ -342,15 +331,10 @@ public class CadExames extends javax.swing.JInternalFrame {
        // VerificarTurma();
     }//GEN-LAST:event_TabelaAlunosMouseClicked
 
-    private void cpfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cpfKeyReleased
-        pesquisaAlunos();
-    }//GEN-LAST:event_cpfKeyReleased
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField NomeMedico;
     private javax.swing.JTable TabelaAlunos;
-    private javax.swing.JFormattedTextField cpf;
     private javax.swing.JTextField crm;
     private javax.swing.JFormattedTextField dataRealizacaoExame;
     private javax.swing.JFormattedTextField dataValidadeExame;
@@ -365,6 +349,7 @@ public class CadExames extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton limpar;
+    private javax.swing.JTextField matricuaAluno;
     private javax.swing.JTextField objetivo;
     private javax.swing.JTextField recomendacaoMedica;
     private javax.swing.JButton salvar;

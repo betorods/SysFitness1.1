@@ -5,16 +5,18 @@ package br.sys.Bean;
  */
 public class PagamentoDeSalario {
    private String matriculaFuncionario;
+   private int mat_funcionario_Pag;
    private float valor;
    private String meses;
    private String dataDoPagamento; 
    
    
-    public PagamentoDeSalario(float valor, String meses, String dataDoPagamento, String matriculaFuncionario) {
+    public PagamentoDeSalario(float valor, int mat_funcionario_Pag ,String meses, String dataDoPagamento, String matriculaFuncionario) {
         this.matriculaFuncionario = matriculaFuncionario;
         this.valor = valor;
         this.meses = meses;
         this.dataDoPagamento = dataDoPagamento;
+        this.mat_funcionario_Pag = mat_funcionario_Pag;
     }
     
     public PagamentoDeSalario(){
@@ -51,5 +53,13 @@ public class PagamentoDeSalario {
 
     public void setMatriculaFuncionario(String matriculaFuncionario) {
         this.matriculaFuncionario = matriculaFuncionario;
+    }
+
+    public int getMat_funcionario_Pag() {
+        return mat_funcionario_Pag;
+    }
+
+    public void setMat_funcionario_Pag(int mat_funcionario_Pag) {
+        this.mat_funcionario_Pag = mat_funcionario_Pag;
     }
 }

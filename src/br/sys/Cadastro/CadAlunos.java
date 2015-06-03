@@ -1,6 +1,7 @@
 package br.sys.Cadastro;
 
 import br.sys.Bean.Alunos;
+import br.sys.Bean.Cargo;
 import br.sys.Bean.Turma;
 import br.sys.DAO.AlunoDAO;
 import java.sql.Connection;
@@ -13,6 +14,7 @@ import br.sys.DAO.ExamesDAO;
 import java.awt.Button;
 import java.awt.Image;
 import java.io.File;
+import java.sql.Statement;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -36,21 +38,31 @@ public class CadAlunos extends javax.swing.JInternalFrame {
     public CadAlunos() throws ClassNotFoundException {
         initComponents();
         conecta = ConexaoBD.conexao();
+        buscarMatricula();
         foto.setName("C:\\Users\\Alberto\\Pictures\\photos\\user 1(Custom).png");
 
     }
-    /* public void mostraItens(){
-     String sql ="Select codigo from usuario where order by codigo Asc" ;
-     try{
-     pst = conecta.prepareStatement(sql);
-     rs = pst.executeQuery();
-     }
-     catch(SQLException error){
-     JOptionPane.showMessageDialog(null, error);
-        
-     }
-     }  */
+    
+    public void buscarMatricula() throws ClassNotFoundException {
+        int id = 0;
+        try {
+            Connection con = ConexaoBD.conexao();
+            Statement stm = con.createStatement();
 
+            ResultSet rs = stm.executeQuery("select max(id_usuario)AS id from usuario;");
+            while (rs.next()) {
+                id = rs.getInt("id");
+                id += 1;
+            }
+            matriculaFuncionario.setText(Integer.toString(id));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+   
     public void mostrarTurma() {
         int seleciona = TabelaTurma.getSelectedRow();
         cod_turma.setText(TabelaTurma.getModel().getValueAt(seleciona, 0).toString());
@@ -135,6 +147,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
         bairro.setText("");
         cep.setText("");
         cidade.setText("");
+       // foto.setText("");
     }
 
     public void habilitaCampos(boolean habilita, JTextField nome, JTextField cidade,
@@ -175,6 +188,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
 
     }
 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -222,6 +236,8 @@ public class CadAlunos extends javax.swing.JInternalFrame {
         Foto = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         foto = new javax.swing.JLabel();
+        matriculaFuncionario = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TabelaTurma = new javax.swing.JTable();
@@ -407,7 +423,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bairro, cidade, endereco});
@@ -472,6 +488,16 @@ public class CadAlunos extends javax.swing.JInternalFrame {
                 .addGap(31, 31, 31))
         );
 
+        matriculaFuncionario.setBackground(new java.awt.Color(230, 228, 228));
+        matriculaFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                matriculaFuncionarioActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5.setText("Matricula");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -530,7 +556,13 @@ public class CadAlunos extends javax.swing.JInternalFrame {
                                             .addComponent(localNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE)))
-                                .addComponent(Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(matriculaFuncionario)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(31, 31, 31)
+                                        .addComponent(jLabel5)))
+                                .addGap(11, 11, 11)))
                         .addGap(0, 35, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -557,18 +589,21 @@ public class CadAlunos extends javax.swing.JInternalFrame {
                             .addComponent(sexoFeminino)))
                     .addComponent(Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(jLabel10)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(telCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(telFixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(telFixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(matriculaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(jLabel17))
@@ -577,7 +612,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
                     .addComponent(pai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Dados Cadastrais", jPanel2);
@@ -728,6 +763,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
 
     private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
         //     cadastrarUsuario();
+        verificador = 1;
         Alunos alunos = new Alunos();
         AlunoDAO alunodao = new AlunoDAO();
 
@@ -747,6 +783,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
         alunos.setSexo(Sex);
         alunos.setEstado(estados.getSelectedItem().toString());
         alunos.setFoto(foto.getName());
+        alunos.setVerificador(verificador);
 
         alunodao.inserirAlunos(alunos);
 
@@ -841,6 +878,10 @@ public class CadAlunos extends javax.swing.JInternalFrame {
         pesquisaTurma();
     }//GEN-LAST:event_BuscarActionPerformed
 
+    private void matriculaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaFuncionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_matriculaFuncionarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
@@ -872,6 +913,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -885,6 +927,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
     private javax.swing.JButton limpar;
     private javax.swing.JTextField localNasc;
     private javax.swing.JTextField mae;
+    private javax.swing.JTextField matriculaFuncionario;
     private javax.swing.JTextField nome;
     private javax.swing.JLabel nomeProfessor;
     private javax.swing.JTextField numero;
@@ -900,4 +943,5 @@ public class CadAlunos extends javax.swing.JInternalFrame {
     private javax.swing.JButton voltar;
     // End of variables declaration//GEN-END:variables
     private String Sex;
+    private int verificador;
 }

@@ -8,18 +8,17 @@ public class Funcionario extends Usuario{
         private String Funcao;
         private float salario;
 
-    public Funcionario(int id_funcionario, String Funcao, String nome, String cpf, String telFixo, String rg, String dataNasc, String localNasc, String sexo, String mae, String pai, String endereco, int numero, String bairro, String cidade, String cep, String estado, String telCelular, float salario, String foto) {
-        super(nome, cpf, telFixo, rg, dataNasc, localNasc, sexo, mae, pai, endereco, numero, bairro, cidade, cep, estado, telCelular, foto);
+    public Funcionario(int id_funcionario, String Funcao, String nome, String cpf, String telFixo, String rg, String dataNasc, String localNasc, String sexo, String mae, String pai, String endereco, int numero, String bairro, String cidade, String cep, String estado, String telCelular, float salario, String foto, int verificador) {
+        super(nome, cpf, telFixo, rg, dataNasc, localNasc, sexo, mae, pai, endereco, numero, bairro, cidade, cep, estado, telCelular, foto, verificador);
         this.id_funcionario = id_funcionario;
         this.Funcao = Funcao;
         this.salario = salario;
     }
 
     public Funcionario() {
-
+    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
        public String getFuncao() {
             return Funcao;
         }

@@ -84,17 +84,15 @@ public class ConsultarAluno extends javax.swing.JInternalFrame {
 
     public void verificador() {
         String sql = "Select *from usuario where cpf =? and verificador = ?";
-        String aux = "1";
+        String aux = "0";
         try {
             pst = conecta.prepareStatement(sql);
             pst.setString(1, cpfUsuario.getText());
             pst.setString(2, aux);
 
             rs = pst.executeQuery();
+
             if (rs.next()) {
-                //  JOptionPane.showMessageDialog(null,"OK. ");
-                pesquisaUsuario();
-            } else {
                 int i = JOptionPane.showConfirmDialog(null, "Aluno esta excluido logicamente."
                         + "\nDeseja Reativar a exclusão?");
                 if (i == JOptionPane.YES_OPTION) {
@@ -105,6 +103,8 @@ public class ConsultarAluno extends javax.swing.JInternalFrame {
                     System.out.println("Clicou em Cancel");
                 }
 
+            } else {
+                pesquisaUsuario();
             }
         } catch (SQLException error) {
             JOptionPane.showMessageDialog(null, error);
@@ -118,6 +118,18 @@ public class ConsultarAluno extends javax.swing.JInternalFrame {
             pst = conecta.prepareStatement(sql);
             pst.setString(1, aux);
             pst.setString(2, cpfUsuario.getText());
+            pst.execute();
+            //    JOptionPane.showMessageDialog(null,aux + "Test");
+        } catch (SQLException error) {
+            JOptionPane.showMessageDialog(null, error);
+        }
+    }
+
+    public void excluirDefinitivamente() {
+        String sql = "DELETE FROM usuario WHERE cpf like ?;";
+        try {
+            pst = conecta.prepareStatement(sql);
+            pst.setString(1, cpfUsuario.getText());
             pst.execute();
             //    JOptionPane.showMessageDialog(null,aux + "Test");
         } catch (SQLException error) {
@@ -348,38 +360,26 @@ public class ConsultarAluno extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TabelaAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaAlunoMouseClicked
-        mostrarAluno();
-    }//GEN-LAST:event_TabelaAlunoMouseClicked
+    private void fotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotoMouseClicked
 
-    private void matriculaAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaAlunoActionPerformed
+    }//GEN-LAST:event_fotoMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //options = { “OK”, “CANCELAR”,”VOLTAR” };
+        int i = JOptionPane.showConfirmDialog(null, "Deseja excluir este aluno definitivamente?."
+            + "\n?");
+        if (i == JOptionPane.YES_OPTION) {
+            excluirDefinitivamente();
+        } else if (i == JOptionPane.NO_OPTION) {
+            ExcluirLogicamente();
+        } else if (i == JOptionPane.CANCEL_OPTION) {
+            System.out.println("Clicou em Cancel");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cpfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_matriculaAlunoActionPerformed
-
-    private void matriculaAlunoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_matriculaAlunoKeyReleased
-        pesquisaUsuarioCodigo();
-        nomeUsuario.setText("");
-        cpfUsuario.setText("");
-
-    }//GEN-LAST:event_matriculaAlunoKeyReleased
-
-    private void nomeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nomeUsuarioActionPerformed
-
-    private void nomeUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeUsuarioKeyReleased
-        pesquisaUsuario();
-        cpfUsuario.setText("");
-        matriculaAluno.setText("");
-    }//GEN-LAST:event_nomeUsuarioKeyReleased
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
-        verificador();
-    }//GEN-LAST:event_salvarActionPerformed
+    }//GEN-LAST:event_cpfUsuarioActionPerformed
 
     private void limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparActionPerformed
         nomeUsuario.setText("");
@@ -387,17 +387,37 @@ public class ConsultarAluno extends javax.swing.JInternalFrame {
         cpfUsuario.setText("");
     }//GEN-LAST:event_limparActionPerformed
 
-    private void cpfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfUsuarioActionPerformed
+    private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
+        verificador();
+    }//GEN-LAST:event_salvarActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void nomeUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeUsuarioKeyReleased
+        pesquisaUsuario();
+        cpfUsuario.setText("");
+        matriculaAluno.setText("");
+    }//GEN-LAST:event_nomeUsuarioKeyReleased
+
+    private void nomeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cpfUsuarioActionPerformed
+    }//GEN-LAST:event_nomeUsuarioActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ExcluirLogicamente();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void matriculaAlunoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_matriculaAlunoKeyReleased
+        pesquisaUsuarioCodigo();
+        nomeUsuario.setText("");
+        cpfUsuario.setText("");
+    }//GEN-LAST:event_matriculaAlunoKeyReleased
 
-    private void fotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotoMouseClicked
+    private void matriculaAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaAlunoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_matriculaAlunoActionPerformed
 
-    }//GEN-LAST:event_fotoMouseClicked
+    private void TabelaAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaAlunoMouseClicked
+        mostrarAluno();
+    }//GEN-LAST:event_TabelaAlunoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

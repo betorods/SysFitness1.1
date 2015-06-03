@@ -10,16 +10,16 @@ public class Exames {
      private String dataValidadeExame;
      private String recomendacoes;
      private String objetivo;
-     private String cpf;
+     private int matriculaAluno;
 
-    public Exames(String nomeMedico, int crm, String dataRealizacaoExame, String dataValidadeExame, String recomendacoes, String objetivo, String cpf) {
+    public Exames(String nomeMedico, int crm, String dataRealizacaoExame, String dataValidadeExame, String recomendacoes, String objetivo, int matriculaAluno) {
         this.nomeMedico = nomeMedico;
         this.crm = crm;
         this.dataRealizacaoExame = dataRealizacaoExame;
         this.dataValidadeExame = dataValidadeExame;
         this.recomendacoes = recomendacoes;
         this.objetivo = objetivo;
-        this.cpf = cpf;
+        this.matriculaAluno = matriculaAluno;
     }
     
     public Exames(){
@@ -74,12 +74,12 @@ public class Exames {
         this.objetivo = objetivo;
     }
 
-    public String getCpf() {
-        return cpf;
+    public int getMatriculaAluno() {
+        return matriculaAluno;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setMatriculaAluno(int matriculaAluno) {
+        this.matriculaAluno = matriculaAluno;
     }
         
 }
