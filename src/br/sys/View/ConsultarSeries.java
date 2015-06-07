@@ -6,27 +6,36 @@
 package br.sys.View;
 
 import br.sys.DAO.ConexaoBD;
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 import java.awt.Desktop; // abrir o arquivo pdfs
 import java.io.File;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -43,16 +52,16 @@ public class ConsultarSeries extends javax.swing.JInternalFrame {
         initComponents();
         conecta = ConexaoBD.conexao();
     }
-    
-   
 
-    public void GerarPdf() throws FileNotFoundException {
+    public void GerarPdf() throws FileNotFoundException, Exception {
         // criação do objeto documento 
         Document document = null;
         OutputStream outPutStream = null;
+
+        //------------------------------------------
         int seleciona = TabelaUsuario.getSelectedRow();
         document = new Document(PageSize.A4, 30, 20, 20, 30);
-        outPutStream = new FileOutputStream("E:\\Serie.pdf");
+        outPutStream = new FileOutputStream("E:\\Series.pdf");
         try {
             PdfWriter.getInstance(document, outPutStream);
             document.open();
@@ -63,8 +72,21 @@ public class ConsultarSeries extends javax.swing.JInternalFrame {
             PdfPCell cabecalho = new PdfPCell(new Paragraph("Lista"));
             tabela.addCell(cabecalho);
             tabela.addCell("Historico de Series");
-            tabela.addCell(TabelaUsuario.getModel().getValueAt(seleciona, 0).toString());
-            
+            //------------------------------------------
+            ArrayList<StringBuilder> linhas = new ArrayList<StringBuilder>();
+            StringBuilder b;
+            for (int i = 0; i < TabelaUsuario.getRowCount(); i++) {
+                b = new StringBuilder();
+                for (int j = 0; j < TabelaUsuario.getColumnCount(); j++) {
+                    b.append(TabelaUsuario.getValueAt(i, j)).append(";");
+                }
+                linhas.add(b);
+              //  tabela.addCell(linhas.add(b));
+            }
+        //--------------------------------------------
+
+           // tabela.addCell(linhas.toString());
+            // tabela.addCell(TabelaUsuario.getModel().getValueAt(seleciona, 0).toString());
 
             document.add(tabela);
         } catch (DocumentException ex) {
@@ -74,8 +96,23 @@ public class ConsultarSeries extends javax.swing.JInternalFrame {
 
     }
 
+    //--------------------
+    public void tabela() {
+        ArrayList<StringBuilder> linhas = new ArrayList<StringBuilder>();
+        StringBuilder b;
+        for (int i = 0; i < TabelaUsuario.getRowCount(); i++) {
+            b = new StringBuilder();
+            for (int j = 0; j < TabelaUsuario.getColumnCount(); j++) {
+                b.append(TabelaUsuario.getValueAt(i, j)).append(";");
+            }
+            linhas.add(b);
+            //     JOptionPane.showMessageDialog(null,"Teste Linha"+linhas);
+        }
+    }
+
+    //-----------------
     public void pesquisaSerie() {
-        String sql = "Select mat_aluno, tipo_serie,mat_professor,exercicios, data_inicio,data_termino FROM series WHERE mat_aluno LIKE ?";
+        String sql = "Select mat_aluno_serie, tipo_serie,mat_professor,exercicios, data_inicio,data_termino FROM series WHERE mat_aluno_serie LIKE ?";
 
         try {
             pst = conecta.prepareStatement(sql);
@@ -87,11 +124,12 @@ public class ConsultarSeries extends javax.swing.JInternalFrame {
         } catch (SQLException error) {
             JOptionPane.showMessageDialog(null, error);
         }
+
     }
-    
-    public void abirPdf() throws IOException{
-        Desktop desktop = Desktop.getDesktop();    
-        desktop.open(new File("E:\\Serie.pdf"));
+
+    public void abirPdf() throws IOException {
+        Desktop desktop = Desktop.getDesktop();
+        desktop.open(new File("E:\\Series.pdf"));
     }
 
     public void mostraItens() {
@@ -117,6 +155,7 @@ public class ConsultarSeries extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         salvar = new javax.swing.JButton();
         limpar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setTitle("Consultar Series");
 
@@ -148,6 +187,7 @@ public class ConsultarSeries extends javax.swing.JInternalFrame {
             }
         });
 
+        salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/sys/Imagens/zoom.png"))); // NOI18N
         salvar.setText("Buscar");
         salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,44 +203,51 @@ public class ConsultarSeries extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\exercicio.png")); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(mat_Aluno, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(limpar, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                .addGap(15, 15, 15)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                .addGap(5, 5, 5))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mat_Aluno, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(mat_Aluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(mat_Aluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(limpar)
                     .addComponent(salvar))
-                .addGap(0, 21, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,11 +268,13 @@ public class ConsultarSeries extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TabelaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaUsuarioMouseClicked
+
         try {
             GerarPdf();
-        } catch (FileNotFoundException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(ConsultarSeries.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_TabelaUsuarioMouseClicked
 
     private void mat_AlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mat_AlunoActionPerformed
@@ -244,6 +293,12 @@ public class ConsultarSeries extends javax.swing.JInternalFrame {
 
     private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
         pesquisaSerie();
+        try {
+            GerarPdf();
+        } catch (Exception ex) {
+            Logger.getLogger(ConsultarSeries.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_salvarActionPerformed
 
     private void limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparActionPerformed
@@ -256,6 +311,7 @@ public class ConsultarSeries extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaUsuario;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -263,5 +319,13 @@ public class ConsultarSeries extends javax.swing.JInternalFrame {
     private javax.swing.JTextField mat_Aluno;
     private javax.swing.JButton salvar;
     // End of variables declaration//GEN-END:variables
+
+    private Object GetData(JTable TabelaUsuario, int x, int y) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private PdfPCell getCellTitle() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

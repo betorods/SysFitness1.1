@@ -54,7 +54,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
                 id = rs.getInt("id");
                 id += 1;
             }
-            matriculaFuncionario.setText(Integer.toString(id));
+            matriculaAluno.setText(Integer.toString(id));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -72,7 +72,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
 
     public void VerificarTurma() {
         String sql = "Select *FROM turma WHERE cod_turma =? AND alunos_cadastrado = ?";
-        String aux = "10";
+        String aux = "40";
         try {
             pst = conecta.prepareStatement(sql);
             pst.setString(1, cod_turma.getText());
@@ -236,7 +236,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
         Foto = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         foto = new javax.swing.JLabel();
-        matriculaFuncionario = new javax.swing.JTextField();
+        matriculaAluno = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -488,10 +488,10 @@ public class CadAlunos extends javax.swing.JInternalFrame {
                 .addGap(31, 31, 31))
         );
 
-        matriculaFuncionario.setBackground(new java.awt.Color(230, 228, 228));
-        matriculaFuncionario.addActionListener(new java.awt.event.ActionListener() {
+        matriculaAluno.setBackground(new java.awt.Color(230, 228, 228));
+        matriculaAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                matriculaFuncionarioActionPerformed(evt);
+                matriculaAlunoActionPerformed(evt);
             }
         });
 
@@ -558,7 +558,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
                                         .addGap(0, 0, Short.MAX_VALUE)))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(matriculaFuncionario)
+                                    .addComponent(matriculaAluno)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(31, 31, 31)
                                         .addComponent(jLabel5)))
@@ -602,8 +602,8 @@ public class CadAlunos extends javax.swing.JInternalFrame {
                     .addComponent(rg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(telCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(telFixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(matriculaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                    .addComponent(matriculaAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(jLabel17))
@@ -612,7 +612,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
                     .addComponent(pai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Dados Cadastrais", jPanel2);
@@ -689,11 +689,12 @@ public class CadAlunos extends javax.swing.JInternalFrame {
                     .addComponent(alunos_cadastrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Turma", jPanel3);
 
+        voltar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\cancel.png")); // NOI18N
         voltar.setText("Cancelar");
         voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -701,6 +702,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
             }
         });
 
+        limpar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\paintbrush.png")); // NOI18N
         limpar.setText("Limpar");
         limpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -708,6 +710,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
             }
         });
 
+        salvar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\disk.png")); // NOI18N
         salvar.setText("Salvar");
         salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -723,19 +726,19 @@ public class CadAlunos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(voltar))
                     .addComponent(jTabbedPane1))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salvar)
                     .addComponent(voltar)
@@ -755,7 +758,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -784,10 +787,11 @@ public class CadAlunos extends javax.swing.JInternalFrame {
         alunos.setEstado(estados.getSelectedItem().toString());
         alunos.setFoto(foto.getName());
         alunos.setVerificador(verificador);
+        alunos.setId_Alunos(Integer.parseInt(matriculaAluno.getText()));
 
         alunodao.inserirAlunos(alunos);
 
-        //  updateTurma();
+          updateTurma();
     }//GEN-LAST:event_salvarActionPerformed
 
     private void limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparActionPerformed
@@ -818,10 +822,6 @@ public class CadAlunos extends javax.swing.JInternalFrame {
     private void localNascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localNascActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_localNascActionPerformed
-
-    private void dataNascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataNascActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataNascActionPerformed
 
     private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
         // TODO add your handling code here:
@@ -878,9 +878,13 @@ public class CadAlunos extends javax.swing.JInternalFrame {
         pesquisaTurma();
     }//GEN-LAST:event_BuscarActionPerformed
 
-    private void matriculaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaFuncionarioActionPerformed
+    private void matriculaAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaAlunoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_matriculaFuncionarioActionPerformed
+    }//GEN-LAST:event_matriculaAlunoActionPerformed
+
+    private void dataNascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataNascActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataNascActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -927,7 +931,7 @@ public class CadAlunos extends javax.swing.JInternalFrame {
     private javax.swing.JButton limpar;
     private javax.swing.JTextField localNasc;
     private javax.swing.JTextField mae;
-    private javax.swing.JTextField matriculaFuncionario;
+    private javax.swing.JTextField matriculaAluno;
     private javax.swing.JTextField nome;
     private javax.swing.JLabel nomeProfessor;
     private javax.swing.JTextField numero;

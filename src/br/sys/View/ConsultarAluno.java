@@ -28,20 +28,8 @@ public class ConsultarAluno extends javax.swing.JInternalFrame {
         foto.setName("C:\\Users\\Alberto\\Pictures\\photos\\user 1(Custom).png");
     }
 
-    public void pesquisaUsuarioCpf() {
-        String sql = "Select id_usuario, nome, cpf, endereco,foto from usuario where cpf like ?";
-        try {
-            pst = conecta.prepareStatement(sql);
-            pst.setString(1, cpfUsuario.getText() + "%");// %para quando apagar trazer de volta as informações do BD.
-            rs = pst.executeQuery();
-            TabelaAluno.setModel(DbUtils.resultSetToTableModel(rs));
-        } catch (SQLException error) {
-            JOptionPane.showMessageDialog(null, error);
-        }
-    }
-
     public void pesquisaUsuarioCodigo() {
-        String sql = "Select id_usuario, nome, cpf, endereco from usuario where id_usuario like ?";
+        String sql = "Select id_usuario AS Matrcula, nome, cpf, endereco,foto from usuario where id_usuario like ?";
 
         try {
             pst = conecta.prepareStatement(sql);
@@ -54,7 +42,7 @@ public class ConsultarAluno extends javax.swing.JInternalFrame {
     }
 
     public void pesquisaUsuario() {
-        String sql = "Select id_usuario, nome, cpf, endereco,telCelular,telFixo,foto from usuario where cpf like ?";
+        String sql = "Select id_usuario AS Matrcula, nome, cpf, endereco,telCelular,telFixo,foto from usuario where cpf like ?";
 
         try {
             pst = conecta.prepareStatement(sql);
@@ -196,6 +184,7 @@ public class ConsultarAluno extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Matricula");
 
+        nomeUsuario.setEditable(false);
         nomeUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nomeUsuarioActionPerformed(evt);
@@ -215,6 +204,7 @@ public class ConsultarAluno extends javax.swing.JInternalFrame {
             }
         });
 
+        salvar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\zoom.png")); // NOI18N
         salvar.setText("Buscar");
         salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,6 +231,7 @@ public class ConsultarAluno extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\user_delete.png")); // NOI18N
         jButton1.setText("Excluir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,13 +275,13 @@ public class ConsultarAluno extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(salvar, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addComponent(salvar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)
-                        .addGap(15, 15, 15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(limpar)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -309,6 +300,9 @@ public class ConsultarAluno extends javax.swing.JInternalFrame {
                         .addGap(27, 27, 27)))
                 .addGap(25, 25, 25))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton3, limpar, salvar});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -366,8 +360,7 @@ public class ConsultarAluno extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //options = { “OK”, “CANCELAR”,”VOLTAR” };
-        int i = JOptionPane.showConfirmDialog(null, "Deseja excluir este aluno definitivamente?."
-            + "\n?");
+        int i = JOptionPane.showConfirmDialog(null, "Deseja excluir este aluno definitivamente?.");
         if (i == JOptionPane.YES_OPTION) {
             excluirDefinitivamente();
         } else if (i == JOptionPane.NO_OPTION) {

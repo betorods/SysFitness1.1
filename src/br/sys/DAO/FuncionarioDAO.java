@@ -23,7 +23,7 @@ public class FuncionarioDAO {
     public String inserirFuncionario(Funcionario funcionario) {
         try {
             PreparedStatement preStat;
-            preStat = conecta.connection.prepareStatement("insert into usuario(nome,dataNasc,localNasc,cpf,rg,telFixo,telCelular,mae,pai,endereco,numero,bairro,cep,cidade,sexo,estado,foto) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            preStat = conecta.connection.prepareStatement("insert into usuario(nome,dataNasc,localNasc,cpf,rg,telFixo,telCelular,mae,pai,endereco,numero,bairro,cep,cidade,sexo,estado,foto,verificador, id_usuario) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             preStat.setString(1, funcionario.getNome());
             preStat.setString(2, funcionario.getDataNasc());
@@ -43,6 +43,7 @@ public class FuncionarioDAO {
             preStat.setString(16, funcionario.getEstado());
             preStat.setString(17, funcionario.getFoto());
             preStat.setInt(18, funcionario.getVerificador());
+            preStat.setInt(19, funcionario.getId_funcionario());
           // preStat.setString(17, funcionario.getFuncao());
           //  preStat.setFloat(18, funcionario.getSalario());
             preStat.execute();

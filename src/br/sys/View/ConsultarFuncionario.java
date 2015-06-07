@@ -250,7 +250,7 @@ public class ConsultarFuncionario extends javax.swing.JInternalFrame {
         Foto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/sys/Imagens/user1.png"))); // NOI18N
+        foto.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\Funcionario.png")); // NOI18N
         foto.setToolTipText("Click aqui");
         foto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -400,7 +400,7 @@ public class ConsultarFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cpfUsuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int i = JOptionPane.showConfirmDialog(null, "Deseja excluir este aluno definitivamente?");
+        int i = JOptionPane.showConfirmDialog(null, "Deseja excluir este Funcionario definitivamente?");
         if (i == JOptionPane.YES_OPTION) {
             excluirDefinitivamente();
         } else if (i == JOptionPane.NO_OPTION) {

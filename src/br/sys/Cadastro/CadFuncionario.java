@@ -104,6 +104,7 @@ public class CadFuncionario extends javax.swing.JInternalFrame {
         funcionario.setEstado(estados.getSelectedItem().toString());
         funcionario.setFoto(foto.getName());
         funcionario.setVerificador(verificador);
+        funcionario.setId_Funcionario(Integer.parseInt(matriculaFuncionario.getText()));
         // funcionario.setFuncao(funcao.getText());
         // funcionario.setSalario(salario.getAlignmentX());
 
@@ -718,6 +719,7 @@ public class CadFuncionario extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Dados Complementares", jPanel2);
 
+        salvar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\disk.png")); // NOI18N
         salvar.setText("Salvar");
         salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -725,6 +727,7 @@ public class CadFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
+        limpar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\paintbrush.png")); // NOI18N
         limpar.setText("Limpar");
         limpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -732,6 +735,7 @@ public class CadFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
+        cancelar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\cancel.png")); // NOI18N
         cancelar.setText("Cancelar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -745,10 +749,10 @@ public class CadFuncionario extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelar)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()

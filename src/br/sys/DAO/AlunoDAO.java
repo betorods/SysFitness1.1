@@ -22,7 +22,7 @@ public class AlunoDAO {
     public void inserirAlunos(Alunos alunos) {
         try {
             PreparedStatement preStat;
-            preStat = conecta.connection.prepareStatement("Insert into usuario(nome,dataNasc,localNasc,cpf,rg,telFixo,telCelular,mae,pai,endereco,bairro,cep,cidade,sexo,estado,foto) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            preStat = conecta.connection.prepareStatement("Insert into usuario(nome,dataNasc,localNasc,cpf,rg,telFixo,telCelular,mae,pai,endereco,bairro,cep,cidade,sexo,estado,foto,verificador,id_usuario) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             preStat.setString(1, alunos.getNome());
             preStat.setString(2, alunos.getDataNasc());
@@ -41,6 +41,7 @@ public class AlunoDAO {
             preStat.setString(15, alunos.getEstado());
             preStat.setString(16, alunos.getFoto());
             preStat.setInt(17, alunos.getVerificador());
+            preStat.setInt(18, alunos.getId_Alunos());
             preStat.execute();
             // Resposta para o Cadastro
             JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");

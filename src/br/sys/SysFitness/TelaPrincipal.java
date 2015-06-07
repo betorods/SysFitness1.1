@@ -5,9 +5,9 @@ import br.sys.Financeiro.*;
 import br.sys.Cadastro.CadFuncionario;
 import br.sys.Financeiro.PagMensalidade;
 import br.sys.Cadastro.CadSerie;
-import br.sys.Cadastro.CadTurma;
 import br.sys.Cadastro.CadAlunos;
 import br.sys.Cadastro.CadExames;
+import br.sys.Cadastro.CadTurmas;
 import br.sys.Financeiro.PagSalario;
 import br.sys.View.ConsultarExames;
 import br.sys.View.ConsultarAluno;
@@ -17,6 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import br.sys.SysFitness.login;
+import br.sys.View.ConsultarCargos;
+import br.sys.View.ConsultarFuncionario;
 import br.sys.View.ConsultarTurmas;
 
 /**
@@ -55,7 +57,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         pagamentoDeSalario = new javax.swing.JMenuItem();
@@ -72,6 +73,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(280, 50, 0, 0));
+        setResizable(false);
 
         PainelCentral.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -102,6 +104,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\user_add.png")); // NOI18N
         jMenuItem1.setText("Cadastro");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +113,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        botaoBusca.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\zoom.png")); // NOI18N
         botaoBusca.setText("Buscar");
         botaoBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +122,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(botaoBusca);
 
+        jMenuItem15.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\text_padding_top.png")); // NOI18N
         jMenuItem15.setText("Exames");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +131,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem15);
 
+        jMenuItem13.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\timeline_marker.png")); // NOI18N
         jMenuItem13.setText("Consultar Exames");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +144,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenu4.setText("Funcionarios");
 
+        jMenuItem6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\user_add.png")); // NOI18N
         jMenuItem6.setText("Cadastro de Funcionario");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,11 +153,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem6);
 
+        jMenuItem7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\zoom.png")); // NOI18N
         jMenuItem7.setText("Consultar Funcionarios");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem7);
 
+        jMenu6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\user_green.png")); // NOI18N
         jMenu6.setText("Personal");
 
+        jMenuItem10.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\text_padding_top.png")); // NOI18N
         jMenuItem10.setText("Cadastro de Series e Medidas");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,6 +184,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenu4.add(jMenu6);
 
+        jMenuItem11.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\vcard_add.png")); // NOI18N
         jMenuItem11.setText("Cadastro de Turma");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,6 +193,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem11);
 
+        jMenuItem17.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\timeline_marker.png")); // NOI18N
         jMenuItem17.setText("Consultar Turma");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,8 +202,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem17);
 
+        jMenu7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\text_padding_top.png")); // NOI18N
         jMenu7.setText("Relatórios");
 
+        jMenuItem14.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\text_padding_top.png")); // NOI18N
         jMenuItem14.setText("Series do Aluno");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,6 +214,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem14);
 
+        jMenuItem12.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\text_padding_top.png")); // NOI18N
         jMenuItem12.setText("Cargos dos Funcionarios");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,21 +223,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem12);
 
-        jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("Turmas");
-        jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu7.add(jRadioButtonMenuItem1);
-
         jMenu4.add(jMenu7);
 
         jMenuBar1.add(jMenu4);
 
         jMenu2.setText("Finaceiro");
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\money_add.png")); // NOI18N
         jMenuItem3.setText("Pagamento de Mensalidade");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,6 +238,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem3);
 
+        pagamentoDeSalario.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\money_delete.png")); // NOI18N
         pagamentoDeSalario.setText("Pagamento de Salarios ");
         pagamentoDeSalario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,7 +247,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(pagamentoDeSalario);
 
-        jMenuItem2.setText("Entradas de capital");
+        jMenuItem2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\money_add.png")); // NOI18N
+        jMenuItem2.setText("Entrada de capital");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -242,6 +256,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
+        jMenuItem8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\money_delete.png")); // NOI18N
         jMenuItem8.setText("Pagamentos Diversos");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,8 +266,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu2.add(jMenuItem8);
         jMenu2.add(jSeparator1);
 
+        jMenu8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\text_padding_top.png")); // NOI18N
         jMenu8.setText("Relatorios");
 
+        jMenuItem4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\timeline_marker.png")); // NOI18N
         jMenuItem4.setText("Mensalidades por Alunos");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,6 +278,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem4);
 
+        jMenuItem5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\timeline_marker.png")); // NOI18N
         jMenuItem5.setText("Entrada Mensalidades");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,6 +287,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem5);
 
+        jMenuItem16.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\timeline_marker.png")); // NOI18N
         jMenuItem16.setText("Pagamentos de Funcionarios");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,6 +296,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem16);
 
+        jMenuItem18.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\timeline_marker.png")); // NOI18N
         jMenuItem18.setText("Despesas da Empresa");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -389,11 +409,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        br.sys.Cadastro.CadTurma obj = null;
-        obj = new CadTurma();
+        br.sys.Cadastro.CadTurmas obj = null;
+        obj = new CadTurmas();
         PainelCentral.add(obj);
         obj.setVisible(true);
-
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
@@ -440,7 +459,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        // TODO add your handling code here:
+        br.sys.View.ConsultarCargos obj = null;
+        try {
+            obj = new ConsultarCargos();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        PainelCentral.add(obj);
+        obj.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
@@ -479,9 +506,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        br.sys.Financeiro.RelatorioDeEntrada obj = null;
+        br.sys.Financeiro.RelatorioDeEntradaMensaliade obj = null;
         try {
-            obj = new RelatorioDeEntrada();
+            obj = new RelatorioDeEntradaMensaliade();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -491,9 +518,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-        br.sys.Financeiro.RelatorioDeSaida obj = null;
+        br.sys.Financeiro.RelatorioDePagamentoFuncionarios obj = null;
         try {
-            obj = new RelatorioDeSaida();
+            obj = new RelatorioDePagamentoFuncionarios();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -514,7 +541,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             dispose();
         } else if (i == JOptionPane.NO_OPTION) {
             System.out.println("Clicou em Não");
-        }else if (i == JOptionPane.CANCEL_OPTION) {
+        } else if (i == JOptionPane.CANCEL_OPTION) {
             System.out.println("Clicou em Cancel");
         }
 
@@ -524,14 +551,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         br.sys.View.ConsultarTurmas obj = null;
-        obj = new ConsultarTurmas();
+        try {
+            obj = new ConsultarTurmas();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         PainelCentral.add(obj);
         obj.setVisible(true);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
-
-    private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         br.sys.Financeiro.CadEntrada obj = null;
@@ -548,8 +575,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
       }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
-        // TODO add your handling code here:
+        br.sys.Financeiro.RelatorioDeEntradaSaida obj = null;
+        try {
+            obj = new RelatorioDeEntradaSaida();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        PainelCentral.add(obj);
+        obj.setVisible(true);          // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        br.sys.View.ConsultarFuncionario obj = null;
+        try {
+            obj = new ConsultarFuncionario();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        PainelCentral.add(obj);
+        obj.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -616,7 +661,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem pagamentoDeSalario;
     // End of variables declaration//GEN-END:variables

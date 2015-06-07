@@ -135,7 +135,7 @@ public class PagSalario extends javax.swing.JInternalFrame {
             }
         });
 
-        Salvar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto\\Documents\\NetBeansProjects\\SysFitness1.1\\src\\br\\sys\\Imagens\\disk.png")); // NOI18N
+        Salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/sys/Imagens/money_add.png"))); // NOI18N
         Salvar.setText("Salvar");
         Salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

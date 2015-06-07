@@ -15,8 +15,9 @@ public class Alunos extends Usuario{
         private float peitoral;
         private float costas;
         private int Id_Alunos;
+        private int cod_turma;
 
-    public Alunos(float altura, float peso, float panturrilha, float braco, float perna, float cintura, float coxa, float peitoral, float costas, int Id_Alunos, String nome, String cpf, String telFixo, String rg, String dataNasc, String localNasc, String sexo, String mae, String pai, String endereco, int numero, String bairro, String cidade, String cep, String estado, String telCelular, String foto, int verificador) {
+    public Alunos(int cod_turma,float altura, float peso, float panturrilha, float braco, float perna, float cintura, float coxa, float peitoral, float costas, int Id_Alunos, String nome, String cpf, String telFixo, String rg, String dataNasc, String localNasc, String sexo, String mae, String pai, String endereco, int numero, String bairro, String cidade, String cep, String estado, String telCelular, String foto, int verificador) {
         super(nome, cpf, telFixo, rg, dataNasc, localNasc, sexo, mae, pai, endereco, numero, bairro, cidade, cep, estado, telCelular, foto, verificador);
         this.altura = altura;
         this.peso = peso;
@@ -28,24 +29,9 @@ public class Alunos extends Usuario{
         this.peitoral = peitoral;
         this.costas = costas;
         this.Id_Alunos = Id_Alunos;
+        this.cod_turma = cod_turma;
     }
 
-    public Alunos(float altura, float peso, float panturrilha, float braco, float perna, float cintura, float coxa, float peitoral, float costas, int Id_Alunos) {
-        this.altura = altura;
-        this.peso = peso;
-        this.panturrilha = panturrilha;
-        this.braco = braco;
-        this.perna = perna;
-        this.cintura = cintura;
-        this.coxa = coxa;
-        this.peitoral = peitoral;
-        this.costas = costas;
-        this.Id_Alunos = Id_Alunos;
-    }
-
-    
-
-    
 
     public Alunos() {
      //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -147,5 +133,13 @@ public class Alunos extends Usuario{
 
     public void setId_Alunos(int Id_Alunos) {
         this.Id_Alunos = Id_Alunos;
+    }
+
+    public int getCod_turma() {
+        return cod_turma;
+    }
+
+    public void setCod_turma(int cod_turma) {
+        this.cod_turma = cod_turma;
     }
 }
